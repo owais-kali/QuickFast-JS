@@ -8,3 +8,4 @@ if(NOT QUICKFAST_SRC)
 endif()
 
 add_subdirectory(libs)
+add_subdirectory(tests)
