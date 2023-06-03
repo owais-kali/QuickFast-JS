@@ -11,6 +11,12 @@ target_compile_definitions(boost-test
         BOOST_BIND_GLOBAL_PLACEHOLDERS
         ASIOSERVICE_FWD_H)
 
+target_link_libraries(boost-test
+        PUBLIC
+        xerces-c
+        QuickFAST
+        )
+
 set_target_properties(boost-test PROPERTIES
         COMPILE_FLAGS "-s USE_BOOST_HEADERS=1"
         LINK_FLAGS "-s USE_BOOST_HEADERS=1 -s WASM=1"
