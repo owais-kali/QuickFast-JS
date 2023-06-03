@@ -7,5 +7,9 @@ if(NOT QUICKFAST_SRC)
     set(QUICKFAST_SRC ${CMAKE_SOURCE_DIR}/libs/quickfast)
 endif()
 
-add_subdirectory(libs)
+set(BOOST_SOURCE_DIR ${CMAKE_SOURCE_DIR}/libs/boost)
+
+include_directories(${BOOST_SOURCE_DIR}/libs/config/include)
+
+#add_subdirectory(libs)
 add_subdirectory(tests)
