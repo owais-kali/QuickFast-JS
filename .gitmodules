@@ -1,3 +1,6 @@
 [submodule "quickfast"]
 	path = libs/quickfast
 	url = https://github.com/owais-kali/quickfast
+[submodule "xerces-c"]
+	path = libs/xerces-c
+ 	url = https://github.com/apache/xerces-c.git
