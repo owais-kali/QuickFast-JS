@@ -9,7 +9,12 @@ endif()
 
 set(BOOST_SOURCE_DIR ${CMAKE_SOURCE_DIR}/libs/boost)
 
-include_directories(${BOOST_SOURCE_DIR}/libs/config/include)
+#include_directories(${BOOST_SOURCE_DIR}/libs/config/include)
+#include_directories(${BOOST_SOURCE_DIR}/libs/date_time/include)
+
+include_directories(/usr/include)
+include_directories(/usr/include/c++/11/)
+include_directories(/usr/include/x86_64-linux-gnu/c++/11)
 
 #add_subdirectory(libs)
 add_subdirectory(tests)
