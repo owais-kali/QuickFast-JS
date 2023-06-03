@@ -11,10 +11,12 @@ set(BOOST_SOURCE_DIR ${CMAKE_SOURCE_DIR}/libs/boost)
 
 #include_directories(${BOOST_SOURCE_DIR}/libs/config/include)
 #include_directories(${BOOST_SOURCE_DIR}/libs/date_time/include)
+#
+#include_directories(/usr/include/x86_64-linux-gnu/c++/11)
 
-include_directories(/usr/include)
-include_directories(/usr/include/c++/11/)
-include_directories(/usr/include/x86_64-linux-gnu/c++/11)
+set(Boost_INCLUDE_DIR /usr/include)
+find_package(Boost REQUIRED )
 
-#add_subdirectory(libs)
+set(XercesC_INCLUDE_DIR ${CMAKE_SOURCE_DIR}/libs/xerces-c/src)
+add_subdirectory(libs)
 add_subdirectory(tests)

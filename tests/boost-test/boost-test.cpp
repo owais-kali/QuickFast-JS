@@ -1,6 +1,6 @@
-#include "cmath"
+#include <emscripten.h>
+
 #include "iostream"
-#include <comm>
 
 #include <boost/bind.hpp>
 #include <boost/cstdint.hpp>
@@ -19,21 +19,20 @@
 #include <boost/thread/mutex.hpp>
 #include <boost/weak_ptr.hpp>
 
-#include "/usr/share/emscripten/cache/sysroot/include/c++/v1/math.h"
+#include <Application/QuickFAST.h>
 
-namespace std {
-template <typename _Tp, bool = std::__is_integer<_Tp>::__value>
-struct __promote {
-  typedef double __type;
-};
-} // namespace std
+#include "Codecs/Decoder.h"
+#include "Codecs/XMLTemplateParser.h"
+#include <Codecs/DataSourceBuffer.h>
+#include <Codecs/GenericMessageBuilder.h>
+#include <Codecs/SingleMessageConsumer.h>
+#include <Messages/MessageAccessor.h>
 
-typedef __gnu_cxx::__promote<class _A1> sdwd;
-
-int main() {
-  boost::int8_t num1;
-  printf("Hello World!\n");
-  std::isnormal(2);
-
-  std::__promote<int> sw{};
+extern "C" {
+QuickFAST::Codecs::TemplateRegistryPtr
+parse_templates(const std::string &template_filename) {
+  std::ifstream template_stream(template_filename.c_str());
+  QuickFAST::Codecs::XMLTemplateParser parser;
+  return parser.parse(template_stream);
+}
 }
