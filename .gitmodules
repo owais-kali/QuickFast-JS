@@ -1,0 +1,3 @@
+[submodule "quickfast"]
+	path = libs/quickfast
+	url = https://github.com/owais-kali/quickfast
