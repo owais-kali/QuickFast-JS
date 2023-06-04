@@ -11,6 +11,13 @@
 
 extern "C" {
 
+QuickFAST::Codecs::TemplateRegistryPtr
+parse_templates(const std::string &template_filename) {
+  std::ifstream template_stream(template_filename.c_str());
+  QuickFAST::Codecs::XMLTemplateParser parser;
+  return parser.parse(template_stream);
+}
+
 EMSCRIPTEN_KEEPALIVE
 void test(){
   printf("test function called!\n");

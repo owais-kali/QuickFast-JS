@@ -13,7 +13,6 @@ target_compile_definitions(boost-test
 
 target_link_libraries(boost-test
         PUBLIC
-        xerces-c
         QuickFAST
         )
 
