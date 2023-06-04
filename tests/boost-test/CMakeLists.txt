@@ -17,13 +17,11 @@ endfunction()
 
 #CPP Source Files
 GET_FILES(XERCES_SRC_CPP src .cpp)
-message(XERCES_SRC_CPP ${XERCES_SRC_CPP})
+GET_FILES(XERCES_SRC_HPP src .hpp)
 
 list(REMOVE_ITEM XERCES_SRC_CPP ${XERCES_SRC_CPP}/src/xercesc/util/FileManagers/WindowsFileMgr.cpp)
 
 #//////////////////////Xerces-END/////////////
-target_sources(boost-test PRIVATE
-        ${XERCES_SRC_CPP})
 
 target_include_directories(boost-test PRIVATE
         .
@@ -38,6 +36,7 @@ target_compile_definitions(boost-test
 target_link_libraries(boost-test
         PUBLIC
         QuickFAST
+        xerces-c
         )
 
 #set_target_properties(boost-test PROPERTIES

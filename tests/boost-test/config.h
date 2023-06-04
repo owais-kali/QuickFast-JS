@@ -351,11 +351,11 @@
 /* #undef XERCES_HAVE_CPUID_INTRINSIC */
 
 /* Define to 1 if you have emmintrin.h */
-#define XERCES_HAVE_EMMINTRIN_H 1
+#define XERCES_HAVE_EMMINTRIN_H 0
 
 /* Define to have SSE2 instruction support detected at runtime using
    __get_cpuid */
-#define XERCES_HAVE_GETCPUID 1
+#define XERCES_HAVE_GETCPUID 0
 
 /* Define to 1 if you have intrin.h */
 /* #undef XERCES_HAVE_INTRIN_H */
@@ -364,7 +364,7 @@
 #define XERCES_HAVE_INTTYPES_H 1
 
 /* Define to have SSE2 instruction used at runtime */
-#define XERCES_HAVE_SSE2_INTRINSIC 1
+#define XERCES_HAVE_SSE2_INTRINSIC 0
 
 /* Define to 1 if we have sys/types.h */
 #define XERCES_HAVE_SYS_TYPES_H 1

@@ -9,6 +9,7 @@
 #include <Codecs/SingleMessageConsumer.h>
 #include <Messages/MessageAccessor.h>
 
+EMSCRIPTEN_KEEPALIVE
 QuickFAST::Codecs::TemplateRegistryPtr
 parse_templates(const std::string &template_filename) {
   std::ifstream template_stream(template_filename.c_str());
@@ -29,4 +30,8 @@ void test(){
   QuickFAST::Codecs::GenericMessageBuilder builder(consumer);
   decoder_.decodeMessage(source, builder);
   QuickFAST::Messages::Message& msg(consumer.message());
+}
+
+int main(){
+  return 0;
 }
