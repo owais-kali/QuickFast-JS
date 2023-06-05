@@ -2,7 +2,8 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/client/vendor)
 
 #/media/owais/LinuxHDD1/Freelancer/BitZee/QuickFast-JS/tests/boost-test/client/vendor
 add_executable(boost-test
-        boost-test.cpp)
+        boost-test.cpp
+        template_consumer.cpp)
 
 target_include_directories(boost-test
         PRIVATE

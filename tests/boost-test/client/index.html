@@ -8,13 +8,13 @@
 <script src="vendor/boost-test.wasm.js"></script>
 <!--<script src="Public/getES.wasm.js"></script>-->
 <script>
-    // Module.onRuntimeInitialized = _ => {
-    //     const test_print = Module.cwrap('test_print');
-    //     test_print();
-    // };
     Module.onRuntimeInitialized = _ => {
-        const fib = Module.cwrap('fib', 'number', ['number']);
-        console.log(fib(12));
+        const api = {
+            test_print: Module.cwrap('test_print'),
+            message: Module.cwrap('getAMessage', 'string', []),
+            test: Module.cwrap('test', 'string', []),
+        };
+        console.log(api.test());
     };
 </script>
 </body>
