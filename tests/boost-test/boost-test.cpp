@@ -1,4 +1,10 @@
+//#define CLION
+
+#ifndef CLION
 #include <emscripten.h>
+#else
+#define EMSCRIPTEN_KEEPALIVE
+#endif
 
 #include <Application/QuickFAST.h>
 
@@ -32,6 +38,21 @@ void test(){
   QuickFAST::Messages::Message& msg(consumer.message());
 }
 
-int main(){
-  return 0;
+EMSCRIPTEN_KEEPALIVE
+void test_print(){
+  printf("hello world!");
+}
+
+EMSCRIPTEN_KEEPALIVE
+int fib(int n) {
+  if(n <= 0){
+    return 0;
+  }
+  int i, t, a = 0, b = 1;
+  for (i = 1; i < n; i++) {
+    t = a + b;
+    a = b;
+    b = t;
+  }
+  return b;
 }

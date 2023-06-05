@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>QuickFast Decoder</title>
+</head>
+<body>
+<script src="vendor/boost-test.wasm.js"></script>
+<!--<script src="Public/getES.wasm.js"></script>-->
+<script>
+    // Module.onRuntimeInitialized = _ => {
+    //     const test_print = Module.cwrap('test_print');
+    //     test_print();
+    // };
+    Module.onRuntimeInitialized = _ => {
+        const fib = Module.cwrap('fib', 'number', ['number']);
+        console.log(fib(12));
+    };
+</script>
+</body>
+</html>

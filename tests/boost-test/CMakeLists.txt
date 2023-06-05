@@ -1,3 +1,6 @@
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/client/vendor)
+
+#/media/owais/LinuxHDD1/Freelancer/BitZee/QuickFast-JS/tests/boost-test/client/vendor
 add_executable(boost-test
         boost-test.cpp)
 
@@ -39,8 +42,5 @@ target_link_libraries(boost-test
         xerces-c
         )
 
-#set_target_properties(boost-test PROPERTIES
-#        COMPILE_FLAGS "-s USE_BOOST_HEADERS=1"
-#        LINK_FLAGS "-s USE_BOOST_HEADERS=1 -s WASM=1"
-#        -s EXTRA_EXPORTED_RUNTIME_METHODS='[\"cwrap\"]'
-#        -s LLD_REPORT_UNDEFINED)
+set(CMAKE_EXECUTABLE_SUFFIX ".wasm.js")
+set_target_properties(boost-test PROPERTIES LINK_FLAGS "-s WASM=1 -s EXTRA_EXPORTED_RUNTIME_METHODS='[\"cwrap\"]'")
