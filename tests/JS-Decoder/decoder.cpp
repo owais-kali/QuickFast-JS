@@ -53,4 +53,11 @@ const char* Decode(const char* template_xml, uint8_t encoded_data[], const int e
     return cstr(symbol);
 }
 
+#ifdef CLION
+int main()
+{
+    return 0;
+}
+#endif
+
 }//extern "C" END

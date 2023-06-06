@@ -1,33 +1,35 @@
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/client/vendor)
 
-add_executable(boost-test
-        boost-test.cpp
+set(EXE_NAME JS-DECODER)
+
+add_executable(${EXE_NAME}
+        decoder.cpp
         template_consumer.cpp)
 
-target_include_directories(boost-test
+target_include_directories(${EXE_NAME}
         PRIVATE
         ${QUICKFAST_SRC}/src
         )
 
-target_include_directories(boost-test PRIVATE
+target_include_directories(${EXE_NAME} PRIVATE
         .
         ${XercesC_SRC_DIR}/src
         )
 
-target_compile_definitions(boost-test
+target_compile_definitions(${EXE_NAME}
         PUBLIC
         BOOST_BIND_GLOBAL_PLACEHOLDERS
         ASIOSERVICE_FWD_H)
 
-target_link_libraries(boost-test
+target_link_libraries(${EXE_NAME}
         PUBLIC
         QuickFAST
         xerces-c
         )
 
 if (CLION)
-    target_compile_definitions(boost-test PRIVATE -DCLION)
+    target_compile_definitions(${EXE_NAME} PRIVATE -DCLION)
 else (CLION)
     set(CMAKE_EXECUTABLE_SUFFIX ".wasm.js")
-    set_target_properties(boost-test PROPERTIES LINK_FLAGS "-s WASM=1 -s EXTRA_EXPORTED_RUNTIME_METHODS='[\"cwrap\"]'")
+    set_target_properties(${EXE_NAME} PROPERTIES LINK_FLAGS "-s WASM=1 -s EXTRA_EXPORTED_RUNTIME_METHODS='[\"cwrap\"]'")
 endif (CLION)
