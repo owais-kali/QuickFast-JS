@@ -105,13 +105,25 @@ const char *test() {
     QuickFAST::Codecs::TemplateRegistryPtr templates_(parse_templates());
     QuickFAST::Codecs::Decoder decoder_(templates_);
 
-    return "hello owais!";
-    const unsigned char *encoded_data;
-    auto size = ReadDataFromFile("/media/owais/LinuxHDD1/Freelancer/BitZee/TradeEngine/Tests/QuickFast_Decoder_Test/input/encoded_data.bin",
-                                 (char **) &encoded_data);
+    uint8_t encoded_data[] = {
+            127,
+            192,
+            129,
+            129,
+            6,
+            35,
+            95,
+            115,
+            190,
+            228,
+            228,
+            228,
+            228,
+            228,
+    };
 
     // Decode the message
-    QuickFAST::Codecs::DataSourceBuffer source(encoded_data, size);
+    QuickFAST::Codecs::DataSourceBuffer source(encoded_data, sizeof encoded_data);
     QuickFAST::Codecs::SingleMessageConsumer consumer;
     QuickFAST::Codecs::GenericMessageBuilder builder(consumer);
     decoder_.decodeMessage(source, builder);
@@ -131,9 +143,7 @@ const char *test() {
     }
     symbol = (std::string) *string_buffer;
 
-    delete encoded_data;
-
-    return cstr("symbol");
+    return cstr(symbol);
 }
 
 EMSCRIPTEN_KEEPALIVE

@@ -5,17 +5,12 @@
     <title>QuickFast Decoder</title>
 </head>
 <body>
+
+<label>Template:</label>
+<input></input>
+
 <script src="vendor/boost-test.wasm.js"></script>
-<!--<script src="Public/getES.wasm.js"></script>-->
-<script>
-    Module.onRuntimeInitialized = _ => {
-        const api = {
-            test_print: Module.cwrap('test_print'),
-            message: Module.cwrap('getAMessage', 'string', []),
-            test: Module.cwrap('test', 'string', []),
-        };
-        console.log(api.test());
-    };
-</script>
+<script src="resources/js/templates.js"></script>
+<script src="resources/js/index.js"></script>
 </body>
 </html>
