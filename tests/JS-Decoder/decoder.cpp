@@ -1,5 +1,7 @@
+
 #ifndef CLION
 #include <emscripten.h>
+#include <emscripten/bind.h>
 #else
 #define EMSCRIPTEN_KEEPALIVE
 #endif
@@ -23,8 +25,18 @@ const char *cstr(const std::string &message) {
     return cstr;
 }
 
+struct CandleStick {
+    int id;
+    int open;
+    int high;
+    int low;
+    int close;
+    int Volume_BTC;
+    int Volume_USD;
+};
+
 EMSCRIPTEN_KEEPALIVE
-const char* Decode(const char* template_xml, uint8_t encoded_data[], const int encoded_data_size) {
+const int Decode(const char *template_xml, uint8_t encoded_data[], const int encoded_data_size, CandleStick* candleStick) {
     QuickFAST::Codecs::XMLTemplateParser parser;
     QuickFAST::Codecs::TemplateRegistryPtr templates_(parser.parse(template_xml));
     QuickFAST::Codecs::Decoder decoder_(templates_);
@@ -37,25 +49,26 @@ const char* Decode(const char* template_xml, uint8_t encoded_data[], const int e
     QuickFAST::Messages::Message &msg(consumer.message());
 
     // Examine message contents
-    uint64_t seq_num, msg_type, timestamp;
-    const QuickFAST::StringBuffer *string_buffer;
-    std::string symbol;
+    size_t CandlesLength = 0;
+    msg.getSequenceLength(TemplateConsumer::id_candles_, CandlesLength);
 
-    if (!msg.getUnsignedInteger(TemplateConsumer::id_seq_num_, QuickFAST::ValueType::UINT32, seq_num)) {
-        std::cout << "Could not get seq num from msg" << std::endl;
+    for (int i = 0; i < CandlesLength; ++i) {
+        candleStick[i].id = 1;
+        candleStick[i].open = 2;
+        candleStick[i].high = 3;
+        candleStick[i].low = 4;
+        candleStick[i].close = 5;
+        candleStick[i].Volume_BTC = 6;
+        candleStick[i].Volume_USD = 7;
     }
 
-    if (!msg.getString(TemplateConsumer::id_symbol_, QuickFAST::ValueType::ASCII, string_buffer)) {
-        std::cout << "Could not get symbol from msg" << std::endl;
-    }
-    symbol = (std::string) *string_buffer;
-
-    return cstr(symbol);
+    return CandlesLength;
 }
 
 #ifdef CLION
-int main()
-{
+int main() {
+    CandleStick candle;
+    printf("%lu", sizeof(candle));
     return 0;
 }
 #endif

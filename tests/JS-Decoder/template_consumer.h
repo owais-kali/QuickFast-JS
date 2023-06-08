@@ -6,17 +6,21 @@
 
 class TemplateConsumer {
 public:
-  static QuickFAST::Codecs::TemplateRegistryPtr 
-             parse_templates(const std::string& template_filename);
-  // Common field identities
-  static const QuickFAST::Messages::FieldIdentity id_seq_num_;
-  static const QuickFAST::Messages::FieldIdentity id_timestamp_;
-  static const QuickFAST::Messages::FieldIdentity id_symbol_;
+    static const QuickFAST::Messages::FieldIdentity id_candles_;
+    static const QuickFAST::Messages::FieldIdentity id_candles_length_;
 
-  static const QuickFAST::Messages::FieldIdentity id_open_;
-  static const QuickFAST::Messages::FieldIdentity id_high_;
-  static const QuickFAST::Messages::FieldIdentity id_low_;
-  static const QuickFAST::Messages::FieldIdentity id_close_;
-  static const QuickFAST::Messages::FieldIdentity id_volume_;
+    static QuickFAST::Codecs::TemplateRegistryPtr
+    parse_templates(const std::string& template_filename);
+    // Common field identities
+    static const QuickFAST::Messages::FieldIdentity id_seq_num_;
+    static const QuickFAST::Messages::FieldIdentity id_timestamp_;
+    static const QuickFAST::Messages::FieldIdentity id_symbol_;
+
+    static const QuickFAST::Messages::FieldIdentity id_open_;
+    static const QuickFAST::Messages::FieldIdentity id_high_;
+    static const QuickFAST::Messages::FieldIdentity id_low_;
+    static const QuickFAST::Messages::FieldIdentity id_close_;
+    static const QuickFAST::Messages::FieldIdentity Volume_BTC;
+    static const QuickFAST::Messages::FieldIdentity Volume_USD;
 };
 
