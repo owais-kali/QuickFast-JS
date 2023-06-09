@@ -21,7 +21,8 @@ class CandleStick {
 candles=[];
 
 function OnDecodedCandles(){
-    console.log("open: "+candles[56].id)
+    console.log("id: "+candles[0].id)
+    CreateTable();
 }
 
 Module.onRuntimeInitialized = _ => {

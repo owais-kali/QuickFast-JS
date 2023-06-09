@@ -53,13 +53,41 @@ const int Decode(const char *template_xml, uint8_t encoded_data[], const int enc
     msg.getSequenceLength(TemplateConsumer::id_candles_, CandlesLength);
 
     for (int i = 0; i < CandlesLength; ++i) {
-        candleStick[i].id = 1;
-        candleStick[i].open = 2;
-        candleStick[i].high = 3;
-        candleStick[i].low = 4;
-        candleStick[i].close = 5;
-        candleStick[i].Volume_BTC = 6;
-        candleStick[i].Volume_USD = 7;
+        const QuickFAST::Messages::MessageAccessor *candles_accessor;
+        if (msg.getSequenceEntry(TemplateConsumer::id_candles_,
+                                 i, candles_accessor)) {
+            uint64_t id = 0;
+            uint64_t open = 0;
+            uint64_t high = 0;
+            uint64_t low = 0;
+            uint64_t close = 0;
+            uint64_t Volume_BTC = 0;
+            uint64_t Volume_USD = 0;
+
+            candles_accessor->getUnsignedInteger(TemplateConsumer::id_seq_num_,
+                                                 QuickFAST::ValueType::INT32, id);
+            candles_accessor->getUnsignedInteger(TemplateConsumer::id_open_,
+                                                 QuickFAST::ValueType::INT32, open);
+            candles_accessor->getUnsignedInteger(TemplateConsumer::id_high_,
+                                                 QuickFAST::ValueType::INT32, high);
+            candles_accessor->getUnsignedInteger(TemplateConsumer::id_low_,
+                                                 QuickFAST::ValueType::INT32, low);
+            candles_accessor->getUnsignedInteger(TemplateConsumer::id_close_,
+                                                 QuickFAST::ValueType::INT32, close);
+            candles_accessor->getUnsignedInteger(TemplateConsumer::Volume_BTC,
+                                                 QuickFAST::ValueType::INT32, Volume_BTC);
+            candles_accessor->getUnsignedInteger(TemplateConsumer::Volume_USD,
+                                                 QuickFAST::ValueType::INT32, Volume_USD);
+
+
+            candleStick[i].id = id;
+            candleStick[i].open = open;
+            candleStick[i].high = high;
+            candleStick[i].low = low;
+            candleStick[i].close = close;
+            candleStick[i].Volume_BTC = Volume_BTC;
+            candleStick[i].Volume_USD = Volume_USD;
+        }
     }
 
     return CandlesLength;
